@@ -55,8 +55,6 @@ The compiled programs named `palmtrie_eval_lpm` and `palmtrie_eval_acl` run
 performance evaluation of Palmtrie variants as well as the conventional sorted
 list for longest prefix matching and ternary matching for ACLs, respectively.
 
-01234567890123456789012345678901234567890123456789012345678901234567890123456789
-
 The `ptcam_eval_lpm` program takes two arguments: 1) routing table and 2) type
 of the data structure (see the initialization section below for the details);
 sl) SORTED_LIST, tpt) BASIC, mtpt) DEFAULT, and popmtpt) PLUS.  A sammple
