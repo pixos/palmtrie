@@ -240,17 +240,17 @@ test_true_sl(void)
 static int
 test_true_tpt(void)
 {
-    return test_true(PALMTRIE_TERNARY_PATRICIA);
+    return test_true(PALMTRIE_BASIC);
 }
 static int
 test_true_mtpt(void)
 {
-    return test_true(PALMTRIE_MULTIWAY_TERNARY_PATRICIA);
+    return test_true(PALMTRIE_DEFAULT);
 }
 static int
 test_true_popmtpt(void)
 {
-    return test_true(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT);
+    return test_true(PALMTRIE_PLUS);
 }
 
 /*
@@ -349,12 +349,12 @@ test_microperf_sl(void)
 static int
 test_microperf_tpt(void)
 {
-    return test_microperf(PALMTRIE_TERNARY_PATRICIA, 0x1000000ULL);
+    return test_microperf(PALMTRIE_BASIC, 0x1000000ULL);
 }
 static int
 test_microperf_mtpt(void)
 {
-    return test_microperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, 0x1000000ULL);
+    return test_microperf(PALMTRIE_DEFAULT, 0x1000000ULL);
 }
 
 /*
@@ -450,13 +450,12 @@ test_lookup_linx(enum palmtrie_type type1, enum palmtrie_type type2)
 static int
 test_cross_sl_tpt(void)
 {
-    return test_lookup_linx(PALMTRIE_SORTED_LIST, PALMTRIE_TERNARY_PATRICIA);
+    return test_lookup_linx(PALMTRIE_SORTED_LIST, PALMTRIE_BASIC);
 }
 static int
 test_cross_tpt_mtpt(void)
 {
-    return test_lookup_linx(PALMTRIE_TERNARY_PATRICIA,
-                            PALMTRIE_MULTIWAY_TERNARY_PATRICIA);
+    return test_lookup_linx(PALMTRIE_BASIC, PALMTRIE_DEFAULT);
 }
 
 /*
@@ -561,13 +560,12 @@ test_acl_cross(enum palmtrie_type type1, enum palmtrie_type type2)
 static int
 test_acl_cross_sl_tpt(void)
 {
-    return test_acl_cross(PALMTRIE_SORTED_LIST, PALMTRIE_TERNARY_PATRICIA);
+    return test_acl_cross(PALMTRIE_SORTED_LIST, PALMTRIE_BASIC);
 }
 static int
 test_acl_cross_tpt_mtpt(void)
 {
-    return test_acl_cross(PALMTRIE_TERNARY_PATRICIA,
-                          PALMTRIE_MULTIWAY_TERNARY_PATRICIA);
+    return test_acl_cross(PALMTRIE_BASIC, PALMTRIE_DEFAULT);
 }
 
 /*
@@ -726,20 +724,17 @@ test_acl_cross_ross(enum palmtrie_type type1, enum palmtrie_type type2)
 static int
 test_acl_cross_ross_tpt_mtpt(void)
 {
-    return test_acl_cross_ross(PALMTRIE_TERNARY_PATRICIA,
-                               PALMTRIE_MULTIWAY_TERNARY_PATRICIA);
+    return test_acl_cross_ross(PALMTRIE_BASIC, PALMTRIE_DEFAULT);
 }
 static int
 test_acl_cross_ross_tpt_popmtpt(void)
 {
-    return test_acl_cross_ross(PALMTRIE_TERNARY_PATRICIA,
-                               PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT);
+    return test_acl_cross_ross(PALMTRIE_BASIC, PALMTRIE_PLUS);
 }
 static int
 test_acl_cross_ross_sl_tpt(void)
 {
-    return test_acl_cross_ross(PALMTRIE_SORTED_LIST,
-                               PALMTRIE_TERNARY_PATRICIA);
+    return test_acl_cross_ross(PALMTRIE_SORTED_LIST, PALMTRIE_BASIC);
 }
 
 /*

@@ -199,13 +199,13 @@ main(int argc, const char *const argv[])
         test_lpm_perf(PALMTRIE_SORTED_LIST, fname);
     } else if ( 0 == strcmp(type, "tpt") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_lpm_perf(PALMTRIE_TERNARY_PATRICIA, fname);
+        test_lpm_perf(PALMTRIE_BASIC, fname);
     } else if ( 0 == strcmp(type, "mtpt") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_lpm_perf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname);
+        test_lpm_perf(PALMTRIE_DEFAULT, fname);
     } else if ( 0 == strcmp(type, "popmtpt") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_lpm_perf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname);
+        test_lpm_perf(PALMTRIE_PLUS, fname);
     }
 
     return 0;

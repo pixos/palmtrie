@@ -46,7 +46,7 @@ int
 palmtrie_tpt_release(struct palmtrie *palmtrie)
 {
     /* Check the type */
-    if ( PALMTRIE_TERNARY_PATRICIA != palmtrie->type ) {
+    if ( PALMTRIE_BASIC != palmtrie->type ) {
         /* Type error */
         return -1;
     }

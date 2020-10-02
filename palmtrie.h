@@ -151,9 +151,9 @@ ADDR_PREFIX_CMP(addr_t a0, addr_t m0, addr_t a1, addr_t m1, int plen, int msb)
  */
 enum palmtrie_type {
     PALMTRIE_SORTED_LIST,
-    PALMTRIE_TERNARY_PATRICIA,
-    PALMTRIE_MULTIWAY_TERNARY_PATRICIA,
-    PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT,
+    PALMTRIE_BASIC,
+    PALMTRIE_DEFAULT,
+    PALMTRIE_PLUS,
 };
 
 /*

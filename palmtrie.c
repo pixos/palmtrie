@@ -35,15 +35,15 @@ palmtrie_init(struct palmtrie *palmtrie, enum palmtrie_type type)
         /* Sorted list */
         palmtrie->u.sl.head = NULL;
         break;
-    case PALMTRIE_TERNARY_PATRICIA:
+    case PALMTRIE_BASIC:
         /* Ternary PATRICIA */
         palmtrie->u.tpt.root = NULL;
         break;
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA:
+    case PALMTRIE_DEFAULT:
         /* Multiway ternary PATRICIA */
         palmtrie->u.mtpt.root = NULL;
         break;
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT:
+    case PALMTRIE_PLUS:
         /* Multiway ternary PATRICIA */
         palmtrie->u.popmtpt.root = 0;
         palmtrie->u.popmtpt.nodes.nr = 0;
@@ -76,13 +76,13 @@ palmtrie_release(struct palmtrie *palmtrie)
     case PALMTRIE_SORTED_LIST:
         ret = palmtrie_sl_release(palmtrie);
         break;
-    case PALMTRIE_TERNARY_PATRICIA:
+    case PALMTRIE_BASIC:
         ret = palmtrie_tpt_release(palmtrie);
         break;
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA:
+    case PALMTRIE_DEFAULT:
         ret = palmtrie_mtpt_release(palmtrie);
         break;
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT:
+    case PALMTRIE_PLUS:
         //ret = palmtrie_mtpt_release(palmtrie);
         ret = 0;
         break;
@@ -109,12 +109,12 @@ palmtrie_add_data(struct palmtrie *palmtrie, addr_t addr, addr_t mask,
     switch ( palmtrie->type ) {
     case PALMTRIE_SORTED_LIST:
         return palmtrie_sl_add(palmtrie, addr, mask, priority, (void *)data);
-    case PALMTRIE_TERNARY_PATRICIA:
+    case PALMTRIE_BASIC:
         return palmtrie_tpt_add(palmtrie, addr, mask, priority, (void *)data);
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA:
+    case PALMTRIE_DEFAULT:
         return palmtrie_mtpt_add(&palmtrie->u.mtpt, addr, mask, priority,
                                  (void *)data);
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT:
+    case PALMTRIE_PLUS:
         return palmtrie_popmtpt_add(&palmtrie->u.popmtpt, addr, mask, priority,
                                     (void *)data);
     default:
@@ -133,11 +133,11 @@ palmtrie_lookup(struct palmtrie *palmtrie, addr_t addr)
     switch ( palmtrie->type ) {
     case PALMTRIE_SORTED_LIST:
         return (u64)palmtrie_sl_lookup(palmtrie, addr);
-    case PALMTRIE_TERNARY_PATRICIA:
+    case PALMTRIE_BASIC:
         return (u64)palmtrie_tpt_lookup(palmtrie, addr);
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA:
+    case PALMTRIE_DEFAULT:
         return (u64)palmtrie_mtpt_lookup(palmtrie, addr);
-    case PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT:
+    case PALMTRIE_PLUS:
         return (u64)palmtrie_popmtpt_lookup(&palmtrie->u.popmtpt, addr);
     default:
         return 0;
@@ -152,7 +152,7 @@ palmtrie_lookup(struct palmtrie *palmtrie, addr_t addr)
 int
 palmtrie_commit(struct palmtrie *palmtrie)
 {
-    if ( PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT == palmtrie->type ) {
+    if ( PALMTRIE_PLUS == palmtrie->type ) {
         return palmtrie_popmtpt_commit(&palmtrie->u.popmtpt);
     }
 

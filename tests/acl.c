@@ -188,27 +188,6 @@ test_microperf(enum palmtrie_type type, const char *fname, long long nr)
     delta = t1 - t0;
     printf("(%.6lf sec: %.3lf Mlookup/sec)", delta, i / delta / 1000 / 1000);
 
-#if 0
-    if ( type == PALMTRIE_MULTIWAY_TERNARY_PATRICIA ) {
-        void *t;
-        t = palmtrie_popmtpt_convert(&palmtrie.u.mtpt);
-
-        x = 0;
-        t0 = getmicrotime();
-        for ( i = 0; i < nr; i++ ) {
-            if ( 0 == i % (nr / 8) ) {
-                TEST_PROGRESS();
-            }
-            tmp.a[0] = xor128();
-            tmp.a[1] = xor128();
-            x ^= (uint64_t)palmtrie_popmtpt_lookup(t, tmp);
-        }
-        t1 = getmicrotime();
-        (void)x;
-        delta = t1 - t0;
-        printf("(%.6lf sec: %.3lf Mlookup/sec)", delta, i / delta / 1000 / 1000);
-    }
-#endif
     return 0;
 }
 static int
@@ -220,19 +199,19 @@ test_microperf_sl(void)
 static int
 test_microperf_tpt(void)
 {
-    return test_microperf(PALMTRIE_TERNARY_PATRICIA, "tests/acl-0002.tcam",
+    return test_microperf(PALMTRIE_BASIC, "tests/acl-0002.tcam",
                           0x1000000ULL);
 }
 static int
 test_microperf_mtpt(void)
 {
-    return test_microperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA,
+    return test_microperf(PALMTRIE_DEFAULT,
                           "tests/acl-0002.tcam", 0x1000000ULL);
 }
 static int
 test_microperf_popmtpt(void)
 {
-    return test_microperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT,
+    return test_microperf(PALMTRIE_PLUS,
                           "tests/acl-0002.tcam", 0x1000000ULL);
 }
 
@@ -375,35 +354,6 @@ test_rossperf(enum palmtrie_type type, const char *fname, const char *tfname,
     delta = t1 - t0;
     printf("(%.6lf sec: %.3lf Mlookup/sec)", delta, i / delta / 1000 / 1000);
 
-#if 0
-    if ( type == PALMTRIE_MULTIWAY_TERNARY_PATRICIA ) {
-        gv(palmtrie.u.mtpt.root);
-    }
-#endif
-#if 0
-    if ( type == PALMTRIE_MULTIWAY_TERNARY_PATRICIA ) {
-        void *t;
-        t = palmtrie_popmtpt_convert(&palmtrie.u.mtpt);
-
-        x = 0;
-        t0 = getmicrotime();
-        for ( i = 0, j = 0; i < nr; i++ ) {
-            if ( 0 == i % (nr / 8) ) {
-                TEST_PROGRESS();
-            }
-            //x ^= (uint64_t)palmtrie_mtpt_lookup(&palmtrie, pattern[j]);
-            x ^= (uint64_t)palmtrie_popmtpt_lookup(t, pattern[j]);
-            j++;
-            if ( j >= npkt ) {
-                j = 0;
-            }
-        }
-        t1 = getmicrotime();
-        (void)x;
-        delta = t1 - t0;
-        printf("(%.6lf sec: %.3lf Mlookup/sec)", delta, i / delta / 1000 / 1000);
-    }
-#endif
     return 0;
 }
 static int
@@ -415,20 +365,20 @@ test_rossperf_sl(void)
 static int
 test_rossperf_tpt(void)
 {
-    return test_rossperf(PALMTRIE_TERNARY_PATRICIA, "tests/acl-0001.tcam",
+    return test_rossperf(PALMTRIE_BASIC, "tests/acl-0001.tcam",
                          "tests/acl-0001.ross",
                          0x1000000ULL);
 }
 static int
 test_rossperf_mtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, "tests/acl-0001.tcam",
+    return test_rossperf(PALMTRIE_DEFAULT, "tests/acl-0001.tcam",
                          "tests/acl-0001.ross", 0x1000000ULL);
 }
 static int
 test_rossperf_popmtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT,
+    return test_rossperf(PALMTRIE_PLUS,
                          "tests/acl-0001.tcam", "tests/acl-0001.ross",
                          0x1000000ULL);
 }
@@ -441,19 +391,19 @@ test_rossperf2_sl(void)
 static int
 test_rossperf2_tpt(void)
 {
-    return test_rossperf(PALMTRIE_TERNARY_PATRICIA, "tests/acl-0002.tcam",
+    return test_rossperf(PALMTRIE_BASIC, "tests/acl-0002.tcam",
                          "tests/acl-0001.ross", 0x1000000ULL);
 }
 static int
 test_rossperf2_mtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, "tests/acl-0002.tcam",
+    return test_rossperf(PALMTRIE_DEFAULT, "tests/acl-0002.tcam",
                          "tests/acl-0001.ross", 0x1000000ULL);
 }
 static int
 test_rossperf2_popmtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT,
+    return test_rossperf(PALMTRIE_PLUS,
                          "tests/acl-0002.tcam", "tests/acl-0001.ross",
                          0x1000000ULL);
 }
@@ -466,19 +416,19 @@ test_rossperf3_sl(void)
 static int
 test_rossperf3_tpt(void)
 {
-    return test_rossperf(PALMTRIE_TERNARY_PATRICIA, "tests/acl-1000.tcam",
+    return test_rossperf(PALMTRIE_BASIC, "tests/acl-1000.tcam",
                          "tests/acl-1000.ross", 0x1000000ULL);
 }
 static int
 test_rossperf3_mtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, "tests/acl-1000.tcam",
+    return test_rossperf(PALMTRIE_DEFAULT, "tests/acl-1000.tcam",
                          "tests/acl-1000.ross", 0x1000000ULL);
 }
 static int
 test_rossperf3_popmtpt(void)
 {
-    return test_rossperf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT,
+    return test_rossperf(PALMTRIE_PLUS,
                          "tests/acl-1000.tcam", "tests/acl-1000.ross",
                          0x1000000ULL);
 }

@@ -51,7 +51,7 @@ int
 palmtrie_mtpt_release(struct palmtrie *palmtrie)
 {
     /* Check the type */
-    if ( PALMTRIE_MULTIWAY_TERNARY_PATRICIA != palmtrie->type ) {
+    if ( PALMTRIE_DEFAULT != palmtrie->type ) {
         /* Type error */
         return -1;
     }

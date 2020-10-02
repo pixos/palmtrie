@@ -310,7 +310,7 @@ test_acl_ross(enum palmtrie_type type, const char *fname, const char *tfname)
     }
     t2 = getmicrotime();
     printf("#build %lf %lf\n", t1 - t0, t2 - t1);
-    if ( type == PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT ) {
+    if ( type == PALMTRIE_PLUS ) {
         printf("#nodes = %d\n", palmtrie.u.popmtpt.nodes.used);
     }
 
@@ -525,64 +525,64 @@ main(int argc, const char *const argv[])
         test_acl_perf(PALMTRIE_SORTED_LIST, fname);
     } else if ( 0 == strcmp(type, "tpt-rand") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_acl_perf(PALMTRIE_TERNARY_PATRICIA, fname);
+        test_acl_perf(PALMTRIE_BASIC, fname);
     } else if ( 0 == strcmp(type, "mtpt-rand") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_perf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname);
+        test_acl_perf(PALMTRIE_DEFAULT, fname);
     } else if ( 0 == strcmp(type, "popmtpt-rand") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_perf(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname);
+        test_acl_perf(PALMTRIE_PLUS, fname);
     } else if ( 0 == strcmp(type, "sl-ross") ) {
         printf("#SL:\n");
         test_acl_ross(PALMTRIE_SORTED_LIST, fname, "tests/acl-1000.ross");
     } else if ( 0 == strcmp(type, "tpt-ross") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_acl_ross(PALMTRIE_TERNARY_PATRICIA, fname, "tests/acl-1000.ross");
+        test_acl_ross(PALMTRIE_BASIC, fname, "tests/acl-1000.ross");
     } else if ( 0 == strcmp(type, "mtpt-ross") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname,
+        test_acl_ross(PALMTRIE_DEFAULT, fname,
                       "tests/acl-1000.ross");
     } else if ( 0 == strcmp(type, "popmtpt-ross") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname,
+        test_acl_ross(PALMTRIE_PLUS, fname,
                       "tests/acl-1000.ross");
     } else if ( 0 == strcmp(type, "sl-sfl") ) {
         printf("#SL:\n");
         test_acl_ross(PALMTRIE_SORTED_LIST, fname, "tests/traffic.sfl2");
     } else if ( 0 == strcmp(type, "tpt-sfl") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_acl_ross(PALMTRIE_TERNARY_PATRICIA, fname, "tests/traffic.sfl2");
+        test_acl_ross(PALMTRIE_BASIC, fname, "tests/traffic.sfl2");
     } else if ( 0 == strcmp(type, "mtpt-sfl") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname,
+        test_acl_ross(PALMTRIE_DEFAULT, fname,
                       "tests/traffic.sfl2");
     } else if ( 0 == strcmp(type, "popmtpt-sfl") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname,
+        test_acl_ross(PALMTRIE_PLUS, fname,
                       "tests/traffic.sfl2");
     } else if ( 0 == strcmp(type, "sl-traffic") ) {
         printf("#SL:\n");
         test_acl_ross(PALMTRIE_SORTED_LIST, fname, "tests/traffic.tmp");
     } else if ( 0 == strcmp(type, "tpt-traffic") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_acl_ross(PALMTRIE_TERNARY_PATRICIA, fname, "tests/traffic.tmp");
+        test_acl_ross(PALMTRIE_BASIC, fname, "tests/traffic.tmp");
     } else if ( 0 == strcmp(type, "mtpt-traffic") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname,
+        test_acl_ross(PALMTRIE_DEFAULT, fname,
                       "tests/traffic.tmp");
     } else if ( 0 == strcmp(type, "popmtpt-traffic") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_ross(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname,
+        test_acl_ross(PALMTRIE_PLUS, fname,
                       "tests/traffic.tmp");
     } else if ( 0 == strcmp(type, "tpt-build") ) {
         printf("#TPT(%d):\n", PALMTRIE_PRIORITY_SKIP);
-        test_acl_build(PALMTRIE_TERNARY_PATRICIA, fname);
+        test_acl_build(PALMTRIE_BASIC, fname);
     } else if ( 0 == strcmp(type, "mtpt-build") ) {
         printf("#MTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_build(PALMTRIE_MULTIWAY_TERNARY_PATRICIA, fname);
+        test_acl_build(PALMTRIE_DEFAULT, fname);
     } else if ( 0 == strcmp(type, "popmtpt-build") ) {
         printf("#POPMTPT(%d/%d):\n", PALMTRIE_PRIORITY_SKIP, PALMTRIE_MTPT_STRIDE);
-        test_acl_build(PALMTRIE_MULTIWAY_TERNARY_PATRICIA_OPT, fname);
+        test_acl_build(PALMTRIE_PLUS, fname);
     }
 
     return 0;
