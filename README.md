@@ -19,9 +19,60 @@ contact the author(s).
 
 ## Getting started
 
-To run fundamental test cases and microbenchmarks
+This software uses automake/autoconf.  Run `./autogen.sh` to generate a
+`configure` script.  After generating the `configure` script or if you unarchive
+a source code archive with the `configure` script, run `./configure` and `make`
+to compile the software.
+
+### Basic tests and microbenchmarking
+
+To run basic tests and microbenchmarks, the `make test` command can be used.
 
     $ make test
+    /usr/bin/make  all-recursive
+    make[2]: Nothing to be done for `all-am'.
+    Testing all...
+    ./palmtrie_test_basic
+    basic test (SORTED_LIST): passed
+    basic test (BASIC): passed
+    basic test (DEFAULT): passed
+    basic test (PLUS): passed
+    microbenchmarking (SORTED_LIST): ..............(26.088413 sec: 0.000 Mlookup/sec)passed
+    microbenchmarking (BASIC): ..............(9.045084 sec: 1.855 Mlookup/sec)passed
+    microbenchmarking (DEFAULT): ..............(4.566560 sec: 3.674 Mlookup/sec)passed
+    microbenchmarking (PLUS): ..............(2.386559 sec: 7.030 Mlookup/sec)passed
+    cross check (BASIC,DEFAULT): ....................................................................passed
+    cross check (SORTED_LIST,BASIC): ....................................................................passed
+    cross check for ACL (BASIC,DEFAULT): .................passed
+    cross check for ACL reverse order scanning (BASIC,DEFAULT): ..........passed
+    cross check for ACL reverse order scanning (BASIC,PLUS): ..........passed
+    cross check for ACL (SORTED_LIST,BASIC): .................passed
+    cross check for ACL reverse order scanning (SORTED_LIST,BASIC): ..........passed
+
+### Evaluation
+
+The compiled programs named `palmtrie_eval_lpm` and `palmtrie_eval_acl` run
+performance evaluation of Palmtrie variants as well as the conventional sorted
+list for longest prefix matching and ternary matching for ACLs, respectively.
+
+01234567890123456789012345678901234567890123456789012345678901234567890123456789
+
+The `ptcam_eval_lpm` program takes two arguments: 1) routing table and 2) type
+of the data structure (see the initialization section below for the details);
+sl) SORTED_LIST, tpt) BASIC, mtpt) DEFAULT, and popmtpt) PLUS.  A sammple
+routing table is found at `tests/linx-rib.20141217.0000-p46.txt` in this source
+code directory.
+
+The `ptcam_eval_acl` program takes two arguments: 1) ternary matching table and
+2) type of the data structure and traffic pattern.  The second argument can be
+separated by - (dash) and its prefix and suffix represents the type of the data
+structure and the traffic pattern, respectively.  The type is same as the
+description for the `ptcam_eval_lpm` program above.  The traffic pattern are
+either of rand) random source address, random destination address in the range
+of 10.0.0.0/8, and random source and destination port numbers, sfl) traffic
+pattern specified by the `tests/traffic.sfl2` file, ross) reverse-byte order
+scanning.  Examples of ternary matching tables are found at
+`tests/acl-0001.tcam` and `tests/acl-0002.tcam`.
 
 ## APIs
 
