@@ -17,6 +17,12 @@ The use of this software is limited to education, research, and evaluation
 purposes only.  Commercial use is strictly prohibited.  For all other uses,
 contact the author(s).
 
+## Getting started
+
+To run fundamental test cases and microbenchmarks
+
+    $ make test
+
 ## APIs
 
 ### Initialization

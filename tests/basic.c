@@ -356,6 +356,11 @@ test_microperf_mtpt(void)
 {
     return test_microperf(PALMTRIE_DEFAULT, 0x1000000ULL);
 }
+static int
+test_microperf_popmtpt(void)
+{
+    return test_microperf(PALMTRIE_PLUS, 0x1000000ULL);
+}
 
 /*
  * Performance test
@@ -770,32 +775,35 @@ main(int argc, const char *const argv[])
     /* Run tests */
     if ( flags & (1 << 0) ) {
         /* Basic test */
-        TEST_FUNC("basic (sl)", test_true_sl, ret);
-        TEST_FUNC("basic (tpt)", test_true_tpt, ret);
-        TEST_FUNC("basic (mtpt)", test_true_mtpt, ret);
-        TEST_FUNC("basic (popmtpt)", test_true_popmtpt, ret);
+        TEST_FUNC("basic test (SORTED_LIST)", test_true_sl, ret);
+        TEST_FUNC("basic test (BASIC)", test_true_tpt, ret);
+        TEST_FUNC("basic test (DEFAULT)", test_true_mtpt, ret);
+        TEST_FUNC("basic test (PLUS)", test_true_popmtpt, ret);
     }
     if ( flags & (1 << 1) ) {
         /* Micro performance measurement */
-        TEST_FUNC("microperf (sl)", test_microperf_sl, ret);
-        TEST_FUNC("microperf (tpt)", test_microperf_tpt, ret);
-        TEST_FUNC("microperf (mtpt)", test_microperf_mtpt, ret);
+        TEST_FUNC("microbenchmarking (SORTED_LIST)", test_microperf_sl, ret);
+        TEST_FUNC("microbenchmarking (BASIC)", test_microperf_tpt, ret);
+        TEST_FUNC("microbenchmarking (DEFAULT)", test_microperf_mtpt, ret);
+        TEST_FUNC("microbenchmarking (PLUS)", test_microperf_popmtpt, ret);
     }
     if ( flags & (1 << 2) ) {
         /* Cross validation */
-        TEST_FUNC("cross (tpt,mtpt)", test_cross_tpt_mtpt, ret);
-        TEST_FUNC("cross (sl,tpt)", test_cross_sl_tpt, ret);
+        TEST_FUNC("cross check (BASIC,DEFAULT)", test_cross_tpt_mtpt, ret);
+        TEST_FUNC("cross check (SORTED_LIST,BASIC)", test_cross_sl_tpt, ret);
     }
     if ( flags & (1 << 3) ) {
         /* Cross validation */
-        TEST_FUNC("cross-acl (tpt,mtpt)", test_acl_cross_tpt_mtpt, ret);
-        TEST_FUNC("cross-acl-ross (tpt,mtpt)", test_acl_cross_ross_tpt_mtpt,
-                  ret);
-        TEST_FUNC("cross-acl-ross (tpt,popmtpt)",
+        TEST_FUNC("cross check for ACL (BASIC,DEFAULT)",
+                  test_acl_cross_tpt_mtpt, ret);
+        TEST_FUNC("cross check for ACL reverse order scanning (BASIC,DEFAULT)",
+                  test_acl_cross_ross_tpt_mtpt, ret);
+        TEST_FUNC("cross check for ACL reverse order scanning (BASIC,PLUS)",
                   test_acl_cross_ross_tpt_popmtpt, ret);
-        TEST_FUNC("cross-acl (sl,tpt)", test_acl_cross_sl_tpt, ret);
-        TEST_FUNC("cross-acl-ross (sl,tpt)", test_acl_cross_ross_sl_tpt,
-                  ret);
+        TEST_FUNC("cross check for ACL (SORTED_LIST,BASIC)",
+                  test_acl_cross_sl_tpt, ret);
+        TEST_FUNC("cross check for ACL reverse order scanning (SORTED_LIST,"
+                  "BASIC)", test_acl_cross_ross_sl_tpt, ret);
     }
 
     return ret;
