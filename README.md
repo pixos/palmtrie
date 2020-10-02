@@ -72,6 +72,9 @@ pattern specified by the `tests/traffic.sfl2` file, ross) reverse-byte order
 scanning.  Examples of ternary matching tables are found at
 `tests/acl-0001.tcam` and `tests/acl-0002.tcam`.
 
+The following toolset is used to convert an ACL ruleset to a ternary matching
+table and generate a traffic pattern file: https://github.com/drpnd/acl
+
 ## APIs
 
 ### Initialization
