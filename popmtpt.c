@@ -337,7 +337,8 @@ _lookup(struct palmtrie_popmtpt *t, struct palmtrie_popmtpt_node *node,
         if ( node->u.inode.bitmap_t[0] ) {
               for ( i = 7; i >= 2; i-- ) {
                 tmp = (idx >> i) - 1;
-                if ( (1ULL << (tmp & 0x3f)) & node->u.inode.bitmap_t[tmp >> 6] ) {
+                if ( (1ULL << (tmp & 0x3f))
+                     & node->u.inode.bitmap_t[tmp >> 6] ) {
                     pidx = popcnt(((1ULL << (tmp & 0x3f)) - 1)
                                   & node->u.inode.bitmap_t[tmp >> 6]);
                     base = node->u.inode.tbase
@@ -421,7 +422,8 @@ _lookup(struct palmtrie_popmtpt *t, struct palmtrie_popmtpt_node *node,
         if ( node->u.inode.bitmap_t[0]) {
               for ( i = 7; i >= 2; i-- ) {
                 tmp = (idx >> i) - 1;
-                if ( (1ULL << (tmp & 0x3f)) & node->u.inode.bitmap_t[tmp >> 6] ) {
+                if ( (1ULL << (tmp & 0x3f))
+                     & node->u.inode.bitmap_t[tmp >> 6] ) {
                     pidx = popcnt(((1ULL << (tmp & 0x3f)) - 1)
                                   & node->u.inode.bitmap_t[tmp >> 6]);
                     c = &t->nodes.ptr[node->u.inode.ternaries[tmp >> 6]];
@@ -504,7 +506,7 @@ palmtrie_popmtpt_lookup(struct palmtrie_popmtpt *t, addr_t addr)
  */
 int
 palmtrie_popmtpt_add(struct palmtrie_popmtpt *mtpt, addr_t addr, addr_t mask,
-                  int priority, void *data)
+                     int priority, void *data)
 {
     int ret;
 
