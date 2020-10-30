@@ -4,7 +4,7 @@
 #
 
 AC_PREREQ(2.59)
-AC_INIT([palmtrie], [0.1.0], [asai@jar.jp])
+AC_INIT([palmtrie], [0.1.1], [asai@jar.jp])
 AC_CONFIG_SRCDIR([palmtrie.c])
 AC_CONFIG_HEADER([config.h])
 

@@ -7,7 +7,6 @@
 #define _PALMTRIE_H
 
 #include <stdint.h>
-#include <immintrin.h>
 
 typedef uint16_t u16;
 typedef uint32_t u32;

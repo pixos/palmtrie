@@ -17,12 +17,45 @@ The use of this software is limited to education, research, and evaluation
 purposes only.  Commercial use is strictly prohibited.  For all other uses,
 contact the author(s).
 
+
+## Prerequisite & tested platforms
+
+The following tools are required to compile this software from a distribution
+package.
+
+* C compiler (tested on gcc 5.4.0)
+* make (tested on GNU Make 4.1)
+
+If you build this software from the repository, the following tools are also
+required.
+
+* automake (tested on GNU automake 1.15)
+* autoconf (tested on GNU Autoconf 2.69)
+
+This software is tested on the following platforms.
+
+* Ubuntu 16.04.7 / Intel(R) Core(TM) i7-6700K
+* macOS Mojave (10.14.6) / Intel(R) Core(TM) i9 2.9 GHz
+
+
 ## Getting started
 
 This software uses automake/autoconf.  Run `./autogen.sh` to generate a
 `configure` script.  After generating the `configure` script or if you unarchive
 a source code archive with the `configure` script, run `./configure` and `make`
 to compile the software.
+
+### Programs and library
+
+The `make` command produces  the following test programs and a Palmtrie library
+(see APIs section below for the library interfaces).
+
+* palmtrie_test_basic: Basic tests
+* palmtrie_test_acl: Additional tests
+* palmtrie_eval_lpm: Performance evaluation for longest prefix matching
+* palmtrie_eval_acl: Performance evaluation for access control lists (ACLs)
+* libpalmtrie.la
+
 
 ### Basic tests and microbenchmarking
 
@@ -49,7 +82,7 @@ To run basic tests and microbenchmarks, the `make test` command can be used.
     cross check for ACL (SORTED_LIST,BASIC): .................passed
     cross check for ACL reverse order scanning (SORTED_LIST,BASIC): ..........passed
 
-### Evaluation
+### Evaluation programs
 
 The compiled programs named `palmtrie_eval_lpm` and `palmtrie_eval_acl` run
 performance evaluation of Palmtrie variants as well as the conventional sorted
@@ -72,8 +105,28 @@ pattern specified by the `tests/traffic.sfl2` file, ross) reverse-byte order
 scanning.  Examples of ternary matching tables are found at
 `tests/acl-0001.tcam` and `tests/acl-0002.tcam`.
 
+The output of these evaluation programs include 30 lines of the lookup rate
+samples.  Each sample measures the lookup rate for 10 seconds. The first column
+represents the unix timestamp at the beginning of the sample.  The second and
+the third columns represent the lookup count and the average lookup rate for
+the duration, respectively.
+
 The following toolset is used to convert an ACL ruleset to a ternary matching
 table and generate a traffic pattern file: https://github.com/drpnd/acl
+
+### Reproducing the evaluation results in the Palmtrie paper
+
+To reproduce the evaluation results of Palmtrie^+_8 in the paper, the following
+can be used.
+
+    $ ./run_evaluation.sh
+
+It creates a temporary directory to save the evaluation results.  The directory
+is reported at the end of the output when the evaluation has finished.  The
+`campus` directory stores the results for the synthetic campus network policy
+ACLs.  The `campus/random` and `campus/scanning` directories store the results
+for the uniform traffic and the reverse-byte order scanning, respectively.
+The `classbench` directory stores the results for the ClassBench dataset.
 
 ## APIs
 
