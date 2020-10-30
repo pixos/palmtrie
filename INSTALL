@@ -1,0 +1,26 @@
+
+The distribution package includes the `configure' script to generate `Makefile'.
+If you build this software from the repository, run `./autogen.sh' to generate
+the `configure' script.
+
+Run the following command to build this software programs.
+
+    $ ./configure && make
+
+This command builds the following test programs and palmtrie library (see APIs
+section in `README.md' for the library interfaces).
+
+    * palmtrie_test_basic
+    * palmtrie_test_acl
+    * palmtrie_eval_lpm
+    * palmtrie_eval_acl
+    * libpalmtrie.la
+
+The `Makefile' supports installation these binary programs and the library
+with the following command.
+
+    $ make install
+
+Note that the installation is not required in most cases because the binary
+programs are for testing and evaluation and only the `libpalmtrie.la' library
+is needed.
