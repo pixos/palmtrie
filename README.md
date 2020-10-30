@@ -128,6 +128,13 @@ ACLs.  The `campus/random` and `campus/scanning` directories store the results
 for the uniform traffic and the reverse-byte order scanning, respectively.
 The `classbench` directory stores the results for the ClassBench dataset.
 
+Note that this evaluation script requires the following command:
+
+* wget
+* tar (with gzip support)
+* gunzip
+
+
 ## APIs
 
 ### Initialization
