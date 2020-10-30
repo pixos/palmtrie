@@ -54,7 +54,7 @@ The `make` command produces  the following test programs and a Palmtrie library
 * palmtrie_test_acl: Additional tests
 * palmtrie_eval_lpm: Performance evaluation for longest prefix matching
 * palmtrie_eval_acl: Performance evaluation for access control lists (ACLs)
-* libpalmtrie.la
+* libpalmtrie.la: Library archive file implementing the Palmtrie algorithm
 
 
 ### Basic tests and microbenchmarking
