@@ -13,7 +13,7 @@ if [ $? -ne 0 ]; then
 fi
 
 CWD=`pwd`
-DIR=`mktemp -d -t palmtrie-evaluation`
+DIR=`mktemp -d -t palmtrie-evaluationXXXXX`
 if [ $? -ne 0 ]; then
     echo "Failed to create temporary file" >& 2
     exit -1
