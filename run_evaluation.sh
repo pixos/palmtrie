@@ -3,20 +3,20 @@
 ./configure
 if [ $? -ne 0 ]; then
     echo "Failed to run ./configure" >& 2
-    exit -1
+    exit 1
 fi
 
 make clean all CFLAGS="-O3 -mpopcnt -DPTCAM_SHORT=1"
 if [ $? -ne 0 ]; then
     echo "Failed to build" >& 2
-    exit -1
+    exit 1
 fi
 
 CWD=`pwd`
 DIR=`mktemp -d -t palmtrie-evaluationXXXXX`
 if [ $? -ne 0 ]; then
     echo "Failed to create temporary file" >& 2
-    exit -1
+    exit 1
 fi
 echo "Evaluation Directiory: $DIR"
 
