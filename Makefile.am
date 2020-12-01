@@ -5,7 +5,7 @@
 
 bin_PROGRAMS = palmtrie_test_basic palmtrie_test_acl palmtrie_eval_lpm palmtrie_eval_acl
 
-EXTRA_DIST = README.md run_evaluation.sh tests/linx-rib.20141217.0000-p46.sorted.txt tests/traffic.sfl2 tests/acl-0001.ross tests/acl-0001.tcam tests/acl-0002.tcam
+EXTRA_DIST = README.md run_evaluation.sh tests/linx-rib.20141217.0000-p46.sorted.txt tests/traffic.sfl2 tests/acl-0001.ross tests/acl-0001.tcam tests/acl-0002.tcam tests/acl-1000.tcam tests/acl-1000.ross
 
 lib_LTLIBRARIES = libpalmtrie.la
 libpalmtrie_la_SOURCES = palmtrie.c palmtrie.h sl.c tpt.c mtpt.c popmtpt.c
