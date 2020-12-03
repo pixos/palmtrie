@@ -3,7 +3,7 @@
 ## About
 
 This is the reference implementation of "Palmtrie: A Ternary Key Matching
-Algorithm for IP Packet Filtering Rules," to appear in CoNEXT 2020.
+Algorithm for IP Packet Filtering Rules" presented in ACM CoNEXT 2020.
 
 
 ## Author
