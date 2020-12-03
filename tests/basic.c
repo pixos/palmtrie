@@ -754,6 +754,11 @@ main(int argc, const char *const argv[])
 
     ret = 0;
 
+#if defined(PALMTRIE_SHORT) && PALMTRIE_SHORT
+    fprintf(stderr, "Tests not available for PALMTRIE_SHORT=1.\n");
+    return -1;
+#endif
+
     flags = 0;
     if ( argc < 2 ) {
         /* Test all */
