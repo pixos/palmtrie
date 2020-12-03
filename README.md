@@ -2,9 +2,8 @@
 
 ## About
 
-This is the reference implementation of ["Palmtrie: A Ternary Key Matching
-Algorithm for IP Packet Filtering Rules"]
-(https://dl.acm.org/doi/abs/10.1145/3386367.3431289)
+This is the reference implementation of
+["Palmtrie: A Ternary Key Matching Algorithm for IP Packet Filtering Rules"](https://dl.acm.org/doi/abs/10.1145/3386367.3431289)
 presented in ACM CoNEXT 2020.
 
 
